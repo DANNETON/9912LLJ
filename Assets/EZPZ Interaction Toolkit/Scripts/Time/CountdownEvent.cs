@@ -15,7 +15,8 @@ public class CountdownEvent : MonoBehaviour
     public float clock;
     public bool looping = false;
     public bool resetOnEnable = true;
-    public UnityEvent onClockZero;
+    public int clockZeroIndex = 0;
+    public UnityEvent[] onClockZero;
     public UnityEvent onReset;
 
     [Header("Display Parameters")]
@@ -62,7 +63,11 @@ public class CountdownEvent : MonoBehaviour
                     if (!triggerFlag)
                     {
                         triggerFlag = true;
-                        onClockZero.Invoke();
+                        foreach (var item in onClockZero)
+                        {
+                            item.Invoke();
+
+                        }
                     }
 
                     clock = 0;
