@@ -48,7 +48,7 @@ public class TimeLoopEvent : MonoBehaviour
            
             clock += Time.fixedDeltaTime;
             int count = triggerCount;
-            triggerCount = (int)(clock % loopInterval);
+            triggerCount = (int)(clock / loopInterval);
             onClockFrame.Invoke(clock / loopInterval);
             if (triggerCount > count)
             {
